@@ -49,7 +49,17 @@ class Game{
                 console.log(`You both choose ${player.choice[playerInput1]}, play again.`)
                 this.gameMechanics(this.player1, this.player1.getPlayerChoice(), this.player2, this.player2.getPlayerChoice());
         }
-        
+        else if((playerInput1 === 0 || playerInput1 === 1) && (playerInput2 === 0 || playerInput2 === 1)){
+            console.log("Paper covers Rock!");
+            if(playerInput1 === 1){
+                player.points ++
+                console.log(`${player.name} scores a point and has ${player.points}`);
+            }
+            else if(playerInput2 === 1){
+                otherPlayer.points ++
+                console.log(`${otherPlayer.name} scores a point and has ${otherPlayer.points}`);
+            }
+        } 
     }
 }    
 
