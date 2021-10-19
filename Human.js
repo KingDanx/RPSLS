@@ -14,8 +14,7 @@ class Human extends Player{
     }
     
     getPlayerChoice(){
-        console.log(`${this.name}, choose "Rock", "Paper", "Scissors", "Lizard", or "Spock".`);
-        let userInput = prompt();
+        let userInput = prompt.hide((`${this.name}, choose "Rock", "Paper", "Scissors", "Lizard", or "Spock" : `));
         userInput = userInput.toLowerCase().trim();
         switch (userInput) {
             case "rock":

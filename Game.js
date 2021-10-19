@@ -45,16 +45,13 @@ class Game{
     }
 
     gameMechanics(player, playerInput1, otherPlayer, playerInput2){
-        if(player.choice.indexOf(playerInput1) === 0){
-            if(otherPlayer.choice.indexOf(playerInput2) === 0){
-                console.log(`You both choose ${player.choice[0]}, play again.`)
-                this.getPlayerChoice();
-            }
+        if(playerInput1 === playerInput2){
+                console.log(`You both choose ${player.choice[playerInput1]}, play again.`)
+                this.gameMechanics(this.player1, this.player1.getPlayerChoice(), this.player2, this.player2.getPlayerChoice());
         }
+        
     }
-
-    
-}
+}    
 
 
 
