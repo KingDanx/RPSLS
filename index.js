@@ -2,7 +2,7 @@
 const prompt = require("prompt-sync")();
 const {Game} = require("./Game");
 
-function chooseMode(){
+function newGame(){
     console.log("Welcome to Rock, Paper Scissors, Lizard, Spock! \nChoose game mode. Press 1 for PvP pres 2 for PvE");
     let userInput = prompt();
     switch (userInput) {
@@ -17,10 +17,9 @@ function chooseMode(){
     
         default:
             console.log("Invalid input. Try again.");
-            chooseMode();
+            newGame();
             break;
     }
 }
 
-chooseMode();
-
+newGame();

@@ -8,49 +8,55 @@ class Game{
     constructor(rounds, playerNumber){
         this.rounds = rounds;
         this.playerNumber = playerNumber;
+        this.player1 = new Human("Player 1");
+        this.player2 = new Human("Player 2");
+        this.ai = new AI("Robot");
     }
 
     main(){
        if(this.determinePlayers() === 1){
-            let ai = new AI("Robot");
-            console.log(`\n${ai.name} will be your undoing!`);
-            this.aiRandomChoice(ai);
+            this.gameMechanics(this.player1, this.player1.getPlayerChoice(), this.ai, this.aiRandomChoice(ai));
+       }
+       else{
+           this.gameMechanics(this.player1, this.player1.getPlayerChoice(), this.player2, this.player2.getPlayerChoice());
        }
     }
 
     determinePlayers(){
-        let player1 = new Human("Player 1");
-        player1.name = player1.setName();
+        this.player1.name = this.player1.setName();
 
         if(this.playerNumber > 1){
-            let player2 = new Human("Player 2");
-            player2.name = player2.setName();
-            console.log(`\nWelcome ${player1.name} and ${player2.name}!`);
+            this.player2.name = this.player2.setName();
+            console.log(`\nWelcome ${this.player1.name} and ${this.player2.name}!`);
             return 2;
         }
         else{
-            console.log(`\nWelcome ${player1.name}!`);
+            console.log(`\nWelcome ${this.player1.name}!`);
             return 1;
         }
     }
 
-    getChoice(){
-        switch (key) {
-            case value:
-                
-                break;
-        
-            default:
-                break;
+
+
+    aiRandomChoice(object){
+        let aiChoice = Math.round(Math.random() * 5);
+        console.log(object.choice[aiChoice]);
+        return aiChoice; 
+    }
+
+    gameMechanics(player, playerInput1, otherPlayer, playerInput2){
+        if(player.choice.indexOf(playerInput1) === 0){
+            if(otherPlayer.choice.indexOf(playerInput2) === 0){
+                console.log(`You both choose ${player.choice[0]}, play again.`)
+                this.getPlayerChoice();
+            }
         }
     }
 
-    aiRandomChoice(object){
-        console.log(object.choice[Math.round(Math.random() * 5)]);
-        return object.choice[Math.round(Math.random() * 5)];
-    }
-
+    
 }
+
+
 
 module.exports = {
     Game: Game
