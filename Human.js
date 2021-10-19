@@ -7,9 +7,15 @@ class Human extends Player{
         super(name);
     }
 
-    setName(){
+    setName(playerName){
         console.log(`\n${this.name}, enter your desired name: `);
         this.name = prompt();
+        this.name = this.name.trim();
+        if(this.name.length < 1){
+            console.log("Invailid input. Try again.");
+            this.name = playerName
+            return this.setName(playerName);
+        }
         return this.name;
     }
     
@@ -30,8 +36,7 @@ class Human extends Player{
         
             default:
                 console.log("Invalid input. Try again.");
-                this.getPlayerChoice();
-                break;
+                return this.getPlayerChoice();
         }
     }
 }
