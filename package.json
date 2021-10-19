@@ -1,0 +1,24 @@
+{
+  "name": "rpsls",
+  "version": "1.0.0",
+  "description": "RPSLS User Stories\r Out of 65 points\r Using the concepts of OOP by creating classes and using objects (instances of those classes) to interact\r with each other, create a console version of the classic game Rock Paper Scissors Lizard Spock.\r Minimum Classes Needed:\r • Game\r • Player\r • Human (extends Player)\r • AI (extends Player)\r User stories:\r (5 points): As a developer, I want to make good, consistent commits.\r (15 points): As a developer, I want to find a way to properly incorporate inheritance into my game.\r (5 points): As a developer, I want to account for and handle bad user input, ensuring that any user input\r is validated and reobtained if necessary.\r (10 points): As a developer, I want to store all of the gesture options/choices in an array. I want to find a\r way to utilize the array of gestures within my code (display gesture options, assign player a\r gesture, etc).\r (10 points): As a player, I want the correct player to win a given round based on the choices* made by\r each player.\r (10 points): As a player, I want the game of RPSLS to be at minimum a ‘best of three’ to decide a\r winner.\r (10 points): As a player, I want the option of a single player (human vs AI) or a multiplayer (human vs\r human) game.\r * Rock crushes Scissors\r Scissors cuts Paper\r Paper covers Rock\r Rock crushes Lizard\r Lizard poisons Spock\r Spock smashes Scissors\r Scissors decapitates Lizard\r Lizard eats Paper\r Paper disproves Spock\r Spock vaporizes Rock",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingDanx/RPSLS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KingDanx/RPSLS/issues"
+  },
+  "homepage": "https://github.com/KingDanx/RPSLS#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
