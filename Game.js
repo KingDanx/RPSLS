@@ -54,12 +54,17 @@ class Game{
             if(playerInput1 === 1){
                 player.points ++
                 console.log(`${player.name} scores a point and has ${player.points}`);
+
             }
             else if(playerInput2 === 1){
                 otherPlayer.points ++
                 console.log(`${otherPlayer.name} scores a point and has ${otherPlayer.points}`);
             }
-        } 
+        }
+        if(player.points / this.rounds < 0.5 && otherPlayer.points / this.rounds < 0.5){
+            
+            this.gameMechanics(this.player1, this.player1.getPlayerChoice(), this.player2, this.player2.getPlayerChoice());
+        }  
     }
 }    
 

@@ -8,7 +8,7 @@ class Human extends Player{
     }
 
     setName(){
-        console.log(`${this.name}, enter your desired name: `);
+        console.log(`\n${this.name}, enter your desired name: `);
         this.name = prompt();
         return this.name;
     }
