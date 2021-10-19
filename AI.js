@@ -3,11 +3,7 @@ const {Player} = require("./Player");
 
 class AI extends Player{
     constructor(name){
-        super(name) = name;
-    }
-
-    generateAI(){
-
+        super(name);
     }
 }
 

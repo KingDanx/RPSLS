@@ -1,5 +1,6 @@
 "use strict";
 const prompt = require("prompt-sync")();
+const {AI} = require("./AI");
 const {Human} = require("./Human");
 const {Player} = require("./Player");
 
@@ -10,7 +11,11 @@ class Game{
     }
 
     main(){
-       
+       if(this.determinePlayers() === 1){
+            let ai = new AI("Robot");
+            console.log(`\n${ai.name} will be your undoing!`);
+            this.aiRandomChoice(ai);
+       }
     }
 
     determinePlayers(){
@@ -20,21 +25,29 @@ class Game{
         if(this.playerNumber > 1){
             let player2 = new Human("Player 2");
             player2.name = player2.setName();
-            console.log(`Welcome ${player1.name} and ${player2.name}!`);
+            console.log(`\nWelcome ${player1.name} and ${player2.name}!`);
             return 2;
         }
         else{
-            console.log(`Welcome ${player1.name}!`);
+            console.log(`\nWelcome ${player1.name}!`);
             return 1;
         }
     }
 
     getChoice(){
+        switch (key) {
+            case value:
+                
+                break;
         
+            default:
+                break;
+        }
     }
 
-    aiRandomChoice(){
-        Math.random().round() * 5;
+    aiRandomChoice(object){
+        console.log(object.choice[Math.round(Math.random() * 5)]);
+        return object.choice[Math.round(Math.random() * 5)];
     }
 
 }
