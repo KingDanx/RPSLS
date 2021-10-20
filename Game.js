@@ -100,7 +100,7 @@ class Game{
     }
 
     roundCheck(){
-        if(this.roundAnnounce(this.player2) === true){
+        if(this.roundAnnounce() === true){
             this.main();
         }
         else{
