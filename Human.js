@@ -14,29 +14,28 @@ class Human extends Player{
         if(this.name.length < 1){
             console.log("Invailid input. Try again.");
             this.name = playerName
-            return this.setName(playerName);
+            this.setName();
         }
-        return this.name;
     }
     
     getPlayerChoice(){
-        let userInput = prompt.hide((`${this.name}, choose "Rock", "Paper", "Scissors", "Lizard", or "Spock" : `));
+        let userInput = prompt.hide((`${this.name}, choose "${this.choice[0]}", "${this.choice[1]}", "${this.choice[2]}", "${this.choice[3]}", or "${this.choice[4]}" : `));
         userInput = userInput.toLowerCase().trim();
         switch (userInput) {
             case "rock":
-                this.gesture = userInput;
+                this.gesture = this.choice[0];
                 break;
             case "paper":
-                this.gesture = userInput;
+                this.gesture = this.choice[1];
                 break;
             case "scissors":
-                this.gesture = userInput;
+                this.gesture = this.choice[2];
                 break;
             case "lizard":
-                this.gesture = userInput;
+                this.gesture = this.choice[3];
                 break;
             case "spock":
-                this.gesture = userInput;
+                this.gesture = this.choice[4];
                 break;
         
             default:

@@ -8,29 +8,31 @@ class Game{
         this.rounds = rounds;
         this.playerNumber;
         this.roundCounter = 1;
-        this.player1 = new Human("Player 1");
-        this.player2 = new Human("Player 2");
-        this.ai = new AI("Robot");
     }
 
     newGame(){
-        console.log(`\nWelcome to Rock, Paper Scissors, Lizard, Spock! \nChoose game mode. Press "1" for PvP press "2" for PvE`);
+        console.log(`\nWelcome to Rock, Paper, Scissors, Lizard, Spock! \nChoose game mode. Enter "1" for single player, "2" for multiplayer, or "3" to exit.`);
         let userInput = prompt();
         userInput = userInput.trim();
         switch (userInput) {
             case "1":
-                this.playerNumber = 2;
-                this.determinePlayers(this.player1.name, this.player2.name);
-                this.roundAnnounce(this.player2);
-                this.main();
-            break;
-            case "2":
                 this.playerNumber = 1;
-                this.determinePlayers(this.player1.name, this.ai.name);
-                this.roundAnnounce(this.ai);
+                this.player1 = new Human("Player 1");
+                this.player2 = new AI("Robot");
+                this.namePlayers(this.player1.name, this.player2.name);
+                this.roundAnnounce();
                 this.main();
             break;
-        
+            case "2":  
+                this.playerNumber = 2;
+                this.player1 = new Human("Player 1");
+                this.player2 = new Human("Player 2");
+                this.namePlayers(this.player1.name, this.player2.name);
+                this.roundAnnounce();
+                this.main();
+            break;
+            case "3":
+                break;
             default:
                 console.log("Invalid input. Try again.");
                 this.newGame();
@@ -41,21 +43,21 @@ class Game{
     main(){
         if(this.playerNumber === 1){
             this.player1.getPlayerChoice();
-            this.ai.getPlayerChoice();
-            this.gameMechanics(this.ai);
+            this.player2.getPlayerChoice();
+            this.gameMechanics();
         }
         else{
             this.player1.getPlayerChoice();
             this.player2.getPlayerChoice();
-            this.gameMechanics(this.player2);
+            this.gameMechanics();
         }
      }
 
-    determinePlayers(playerName, playerName2){
-        this.player1.name = this.player1.setName(playerName);
+    namePlayers(){
+        this.player1.setName(this.player1.name);
     
         if(this.playerNumber > 1){
-            this.player2.name = this.player2.setName(playerName2);
+            this.player2.setName(this.player2.name);
             console.log(`\nWelcome ${this.player1.name} and ${this.player2.name}!`); 
         }
         else{
@@ -63,77 +65,73 @@ class Game{
         }
     }
 
-    gameMechanics(otherPlayer){
-        if(this.player1.gesture === otherPlayer.gesture){
+    gameMechanics(){
+        if(this.player1.gesture === this.player2.gesture){
                 console.log(`You both choose ${this.player1.gesture}, play again.`);
                 return this.main();
         }
-        this.comparerator("paper", "rock", "\nPaper covers Rock", otherPlayer);
-        this.comparerator(`scissors`, `paper`, "\nScissors cuts Paper", otherPlayer);
-        this.comparerator(`rock`, `scissors`, "\nRock crushes Scissors", otherPlayer);
-        this.comparerator(`rock`, `lizard`, "\nRock crushes Lizard", otherPlayer);
-        this.comparerator(`lizard`, `spock`, "\nLizard poisons Spock", otherPlayer);
-        this.comparerator(`spock`, `scissors`, "\nSpock smashes Scissors", otherPlayer);
-        this.comparerator(`scissors`, `lizard`, "\nScissors decapitates Lizard", otherPlayer);
-        this.comparerator(`lizard`, `paper`, "\nLizard eats Paper", otherPlayer);
-        this.comparerator(`paper`, `spock`, "\nPaper disproves Spock", otherPlayer);
-        this.comparerator(`spock`, `rock`, "\nSpock vaporizes Rock", otherPlayer);
+        this.comparerator(`${this.player1.choice[1]}`, `${this.player1.choice[0]}`, `\nPaper covers Rock`);
+        this.comparerator(`${this.player1.choice[2]}`, `${this.player1.choice[1]}`, "\nScissors cuts Paper");
+        this.comparerator(`${this.player1.choice[0]}`, `${this.player1.choice[2]}`, "\nRock crushes Scissors");
+        this.comparerator(`${this.player1.choice[0]}`, `${this.player1.choice[3]}`, "\nRock crushes Lizard");
+        this.comparerator(`${this.player1.choice[3]}`, `${this.player1.choice[4]}`, "\nLizard poisons Spock");
+        this.comparerator(`${this.player1.choice[4]}`, `${this.player1.choice[2]}`, "\nSpock smashes Scissors");
+        this.comparerator(`${this.player1.choice[2]}`, `${this.player1.choice[3]}`, "\nScissors decapitates Lizard");
+        this.comparerator(`${this.player1.choice[3]}`, `${this.player1.choice[1]}`, "\nLizard eats Paper");
+        this.comparerator(`${this.player1.choice[1]}`, `${this.player1.choice[4]}`, "\nPaper disproves Spock");
+        this.comparerator(`${this.player1.choice[4]}`, `${this.player1.choice[0]}`, "\nSpock vaporizes Rock");
 
-        this.roundCheck(otherPlayer);
+        this.roundCheck();
     }
 
-    comparerator(winner, looser, string, otherPlayer){
-        if((this.player1.gesture == winner || this.player1.gesture == looser) && (otherPlayer.gesture == winner || otherPlayer.gesture == looser)){
+    comparerator(winner, looser, string){
+        if((this.player1.gesture == winner || this.player1.gesture == looser) && (this.player2.gesture == winner || this.player2.gesture == looser)){
+            console.log(`\n${this.player1.name}: ${this.player1.gesture}\n${this.player2.name}: ${this.player2.gesture}`);
             console.log(string);
             if(this.player1.gesture == winner){
                 this.player1.points++;
                 console.log(`${this.player1.name} scores a point and has ${this.player1.points}\n`);
             }
-            else if(otherPlayer.gesture == winner){
-                otherPlayer.points++;
-                console.log(`${otherPlayer.name} scores a point and has ${otherPlayer.points}\n`);
+            else if(this.player2.gesture == winner){
+                this.player2.points++;
+                console.log(`${this.player2.name} scores a point and has ${this.player2.points}\n`);
             }
         }
     }
 
-    roundCheck(otherPlayer){
-        if(this.roundAnnounce(otherPlayer) === true){
+    roundCheck(){
+        if(this.roundAnnounce(this.player2) === true){
             this.main();
         }
         else{
-            if(this.player1.points > otherPlayer.points){
+            if(this.player1.points > this.player2.points){
                 console.log(`${this.player1.name} is the winner!\n`);
                 this.playAgain()
                 
             }
             else{
-                console.log(`${otherPlayer.name} is the winner!\n`);
+                console.log(`${this.player2.name} is the winner!\n`);
                 this.playAgain()
                 
             }
         }  
     }
     
-    roundAnnounce(otherPlayer){
-        if((this.player1.points / this.rounds) < 0.5 && (otherPlayer.points / this.rounds) < 0.5){
-            console.log(`Round ${this.roundCounter} of ${this.rounds}:\n\n${this.player1.name}'s Points: ${this.player1.points}\n${otherPlayer.name}'s Points: ${otherPlayer.points}\n`);
+    roundAnnounce(){
+        if((this.player1.points / this.rounds) <= 0.5 && (this.player2.points / this.rounds) <= 0.5){
+            console.log(`Round ${this.roundCounter} of ${this.rounds}:\n\n${this.player1.name}'s Points: ${this.player1.points}\n${this.player2.name}'s Points: ${this.player2.points}\n`);
             this.roundCounter++
             return true;
         }
     }
 
     playAgain(){
-        console.log(`\nDo you want to play again? Type "yes" or "no"`);
+        console.log(`Do you want to play again? Type "yes" or "no"`);
         let userInput = prompt();
         userInput = userInput.trim().toLowerCase();
         if(userInput === "yes"){
-            this.player1.points = 0;
-            this.player2.points = 0;
-            this.ai.points = 0;
-            this.roundCounter = 1;
-            this.player1.name = "Player 1";
-            this.player2.name = "Player 2";
-            this.newGame();
+            let newerGame = new Game(3);
+            newerGame.newGame();
         }
         else if(userInput === "no"){
             return;

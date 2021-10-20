@@ -8,7 +8,6 @@ class AI extends Player{
 
     getPlayerChoice(){
         this.gesture = this.choice[Math.round(Math.random() * (this.choice.length - 1))];
-        this.gesture = this.gesture.toLowerCase().trim();
     }
 }
 
