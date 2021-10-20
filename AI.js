@@ -6,10 +6,8 @@ class AI extends Player{
         super(name);
     }
 
-    aiRandomChoice(object){
-        let aiChoice = Math.round(Math.random() * 5);
-        console.log(object.choice[aiChoice]);
-        return aiChoice; 
+    getPlayerChoice(){
+        this.gesture = this.choice[Math.round(Math.random() * this.choice.length - 1)];
     }
 }
 

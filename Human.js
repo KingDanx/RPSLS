@@ -24,15 +24,20 @@ class Human extends Player{
         userInput = userInput.toLowerCase().trim();
         switch (userInput) {
             case "rock":
-                return 0
+                this.gesture = userInput;
+                break;
             case "paper":
-                return 1
+                this.gesture = userInput;
+                break;
             case "scissors":
-                return 2
+                this.gesture = userInput;
+                break;
             case "lizard":
-                return 3
+                this.gesture = userInput;
+                break;
             case "spock":
-                return 4
+                this.gesture = userInput;
+                break;
         
             default:
                 console.log("Invalid input. Try again.");
